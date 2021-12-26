@@ -1,0 +1,2 @@
+# jasminix
+nixos rice
