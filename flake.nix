@@ -5,9 +5,10 @@
     nixpkgs.url = "nixpkgs/nixos-21.11";
     home-manager.url = "github:nix-community/home-manager/release-21.11";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
+    nixos-hardware.url = "github:NixOS/nixos-hardware/master";
   };
 
-  outputs = { nixpkgs, home-manager, ... }:
+  outputs = { nixpkgs, home-manager, nixos-hardware, ... }:
   let
     system = "x86_64-linux";
     pkgs = import nixpkgs {
@@ -33,6 +34,7 @@
       nixos = lib.nixosSystem {
         inherit system;
         modules = [
+          nixos-hardware.nixosModules.lenovo-thinkpad-t420
           ./system/configuration.nix
         ];
       };
