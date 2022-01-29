@@ -120,8 +120,8 @@ in {
           # pass
           Key([mod],
               "p",
-              lazy.spawn("passmenu"),
-              desc="passmenu"),
+              lazy.spawn("rofi-pass"),
+              desc="show password-store in rofi"),
       
           # emojis
           Key([mod],
@@ -135,7 +135,7 @@ in {
       keys.extend([
           Key([],
               f'XF86Audio{action}',
-              lazy.spawn(f'amixer -D pulse sset Master {change}'))
+              lazy.spawn(f'amixer sset Master {change}'))
           for action, change in {
               'RaiseVolume': '1%+', 
               'LowerVolume': '1%-', 

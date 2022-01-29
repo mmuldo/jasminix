@@ -1,3 +1,4 @@
+flake-overlays:
 { config, pkgs, ... }:
 
 {
@@ -12,6 +13,9 @@
       experimental-features = nix-command flakes
     '';
   };
+
+  nixpkgs.config.allowUnfree = true;
+  nixpkgs.overlays = flake-overlays;
 
   # use grub 2 as boot loader
   boot.loader.grub = {
@@ -35,7 +39,7 @@
   };
 
   # Set your time zone.
-  time.timeZone = "America/Chicago";
+  time.timeZone = "America/Los_Angeles";
 
   # Select internationalisation properties.
   i18n.defaultLocale = "en_US.UTF-8";
@@ -46,9 +50,14 @@
 
   # list packages installed in system profile
   environment.systemPackages = with pkgs; [
+    dropbox
+    lm_sensors
+    matlab
+    mathematica
+    firefox
     vim 
     wget
-    firefox
+    thinkfan
     zsh
   ];
 
@@ -60,13 +69,49 @@
       displayManager.lightdm.enable = true; # display manager
       windowManager.qtile.enable = true; # window manager
     };
+    #thinkfan = {
+    #  enable = true;
+    #  levels = [
+    #    [ "level full-speed" 0 32767 ]
+    #  ];
+    #  sensors = [
+    #    {
+    #      query = "/sys/devices/platform/coretemp.0/hwmon/hwmon4/temp1_input";
+    #      type = "hwmon";
+    #    }
+    #    {
+    #      query = "/sys/devices/platform/coretemp.0/hwmon/hwmon4/temp2_input";
+    #      type = "hwmon";
+    #    }
+    #    {
+    #      query = "/sys/devices/platform/coretemp.0/hwmon/hwmon4/temp3_input";
+    #      type = "hwmon";
+    #    }
+    #  ];
+    #};
     printing.enable = true; # enable CUPS to print documents
     openssh.enable = true; # ssh daemon
+    #blueman.enable = true;
+  };
+
+  systemd.user.services.dropbox = {
+    description = "dropbox";
+    wantedBy = [ "graphical-session.target" ];
+    serviceConfig = {
+      ExecStart = "${pkgs.dropbox.out}/bin/dropbox";
+      ExecReload = "${pkgs.coreutils.out}/bin/kill -HUP $MAINPID";
+      KillMode = "control-group"; # upstream recommends process
+      Restart = "on-failure";
+      PrivateTmp = true;
+      ProtectSystem = "full";
+      Nice = 10;
+    };
   };
 
   # Enable sound.
   sound.enable = true;
   hardware.pulseaudio.enable = true;
+  #hardware.bluetooth.enable = true;
 
   programs.zsh.enable = true;
 

@@ -37,6 +37,7 @@ in
     gnupg
     networkmanager_dmenu
     neovim
+    musescore
     pinentry-qt
     rofi
     xclip
@@ -90,7 +91,7 @@ in
       gcm = "git commit -m";
       gs = "git commit -m";
       ls = "exa";
-      vim = "nvim";
+      #vim = "nvim";
       v = "nvim";
       vc = "nvim ~/code/jasminix/system/configuration.nix";
       vh = "nvim ~/code/jasminix/users/matt/home.nix";
@@ -131,8 +132,8 @@ in
           cursor =  "CellForeground";
 	};
         selection = {
-          text =  "CellForeground";
-          background =  "CellBackground";
+          text =  "CellBackground";
+          background =  "CellForeground";
 	};
         normal = {
           black =     "${myTheme.normal.black}";
@@ -167,4 +168,25 @@ in
       };
     };
   };
+
+  #programs.neovim.enable = true;
+  #programs.neovim = {
+  #  enable = true;
+  #            #coc = {
+  #            #  enable = true;
+  #            #};
+  #            #extraConfig = ''
+  #            #  filetype plugin indent on
+  #            #  set nocompatible 
+  #            #  set showmatch ignorecase smartcase hlsearch incsearch
+  #            #  set tabstop=4 softtabstop=4 shiftwidth=4 expandtab smarttab autoindent
+  #            #  set number
+  #            #  set wildmode=longest,list
+  #            #  set cursorline
+  #            #  set ttyfast
+  #            #  set clipboard+=unnamedplus
+  #            #  set cc=80
+  #            #  set title
+  #            #'';
+  #};
 }
