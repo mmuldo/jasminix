@@ -52,8 +52,8 @@ flake-overlays:
   environment.systemPackages = with pkgs; [
     dropbox
     lm_sensors
-    matlab
     mathematica
+    matlab
     firefox
     vim 
     wget

@@ -51,6 +51,7 @@
                             #git
                             #gnupg
                             gcc
+                            musescore
                             networkmanager_dmenu
                             #neovim
                             nodejs
@@ -80,6 +81,7 @@
                             extraConfig = {
                                 github.user = "mmuldo";
                                 pull.rebase = true;
+                                core.editor = "nvim";
                             };
                         };
 

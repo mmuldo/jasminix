@@ -37,7 +37,6 @@ in
     gnupg
     networkmanager_dmenu
     neovim
-    musescore
     pinentry-qt
     rofi
     xclip
