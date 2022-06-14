@@ -221,24 +221,40 @@ in {
                       widget.Spacer(
                           length=10
                       ),
-                      #widget.ThermalSensor(
-                      #    foreground="${cfg.theme.normal.green}",
-                      #    fmt=" {}",
-                      #    tag_sensor="Core 0",
-                      #    foreground_alert="${cfg.theme.normal.red}",
-                      #    threshold=60
-                      #),
+                      widget.Memory(
+                          foreground="${cfg.theme.dim.cyan}",
+                          format=" {MemPercent}%",
+                          update_interval=3.0
+                      ),
                       widget.Spacer(
                           length=10
                       ),
-                      widget.Net(
+                      widget.CPU(
                           foreground="${cfg.theme.normal.yellow}",
-                          format=" {down} ↓↑ {up}",
-                          update_interval=2,
-                          mouse_callbacks={
-                              'Button1': lambda: qtile.cmd_spawn("networkmanager_dmenu")
-                          }
+                          format=" {load_percent}%",
+                          update_interval=3.0
                       ),
+                      widget.Spacer(
+                          length=10
+                      ),
+                      widget.ThermalSensor(
+                          foreground="${cfg.theme.normal.green}",
+                          fmt=" {}",
+                          tag_sensor="Core 0",
+                          foreground_alert="${cfg.theme.normal.red}",
+                          threshold=60
+                      ),
+                      widget.Spacer(
+                          length=10
+                      ),
+                      #widget.Net(
+                      #    foreground="${cfg.theme.normal.yellow}",
+                      #    format=" {down} ↓↑ {up}",
+                      #    update_interval=2,
+                      #    mouse_callbacks={
+                      #        'Button1': lambda: qtile.cmd_spawn("networkmanager_dmenu")
+                      #    }
+                      #),
                       widget.Spacer(
                           length=10
                       ),

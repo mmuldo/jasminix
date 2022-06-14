@@ -27,6 +27,7 @@ flake-overlays:
   networking = {
     hostName = "nixos";
     networkmanager.enable = true;
+    firewall.allowedTCPPorts = [3389];
 
     # The global useDHCP flag is deprecated, therefore explicitly set to false here.
     # Per-interface useDHCP will be mandatory in the future, so this generated config
@@ -57,6 +58,7 @@ flake-overlays:
     firefox
     vim 
     wget
+    wineWowPackages.stable
     thinkfan
     zsh
   ];
@@ -69,6 +71,7 @@ flake-overlays:
       displayManager.lightdm.enable = true; # display manager
       windowManager.qtile.enable = true; # window manager
     };
+    xrdp.enable = true;
     #thinkfan = {
     #  enable = true;
     #  levels = [

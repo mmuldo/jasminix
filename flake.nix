@@ -42,25 +42,44 @@
 
                         home.stateVersion = lib.mkForce "21.11";
 
-                        home.packages = with pkgs; [
+                        home.packages = with pkgs; 
+                        #let
+                        #  my-python-packages = python-packages: with python-packages; [
+                        #    jinja2
+                        #  ];
+                        #  python-with-my-packages = python3.withPackages my-python-packages;
+                        #in
+                        [
+                            anki
                             #alacritty
                             conda
+                            discord
                             #dmenu
                             exa
                             feh
+                            flameshot
                             #git
                             #gnupg
                             gcc
+                            gnome.networkmanagerapplet
+                            jupyter
                             musescore
                             networkmanager_dmenu
                             #neovim
                             nodejs
                             pass
+                            pdftk
+                            picom
                             pinentry-qt
                             python39Full
                             python39Packages.pip
+                            #python-with-my-packages
                             #rofi
+                            remmina
+                            rpi-imager
                             spotify-tui
+                            thunderbird
+                            vscode
                             xclip
                             zoom-us
                         ];
@@ -131,6 +150,7 @@
                                 vc = "nvim ~/code/jasminix/system/configuration.nix";
                                 vh = "nvim ~/code/jasminix/users/matt/home.nix";
                                 vf = "nvim ~/code/jasminix/flake.nix";
+                                see = "TERM=vt100 ssh electrical@192.168.1.3";
                             };
                         };
 
@@ -145,6 +165,7 @@
                                 feh --no-fehbg --bg-fill '/home/matt/wallpapers/minimal-25-nordified.jpg' '/home/matt/wallpapers/minimal-25-nordified.jpg'
                                 #picom --experimental-backends &
                                 #dropbox &
+                                nm-applet &
                             '';
                             executable = true;
                         };
